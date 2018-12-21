@@ -21,6 +21,8 @@ import entity.Result;
 @RequestMapping("/brand")
 public class BrandController {
 	
+	private String name;
+	
 	@Reference
 	private BrandService brandService;
 	
