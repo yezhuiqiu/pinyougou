@@ -21,5 +21,7 @@ public interface BrandMapper {
 	void delete(Long id);
 	
 	void deleteList(BrandVo vo);
+	
+	List<TbBrand>search(TbBrand brand);
 	 
 }

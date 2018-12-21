@@ -1,6 +1,8 @@
 package com.pinyougou.manager.controller;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.sellergoods.serivce.BrandService;
+import com.pinyougou.vo.BrandVo;
 
 import entity.PageResult;
 import entity.Result;
@@ -77,6 +80,37 @@ public class BrandController {
 			return new Result(false,"删除失败");
 		}
 		
+	}
+	
+	@RequestMapping("/delList")
+	public Result deleteList(Long[] ids) {
+		
+		
+		try {
+			
+			System.out.println(ids+"---------------id");
+			
+			BrandVo vo = new BrandVo();
+			
+			vo.setIds(Arrays.asList(ids));
+			brandService.deleteList(vo);
+			
+			return new Result(true,"删除成功");
+			
+		} catch (Exception e) {
+			
+			return new Result(false,"删除失败");
+		}
+	}
+	
+	@RequestMapping(value="/search",method=RequestMethod.POST)
+	public PageResult search(int page,int size,@RequestBody TbBrand brand) {
+		
+			
+			
+			return brandService.search(brand, page, size);
+			
+	
 	}
 	
 }

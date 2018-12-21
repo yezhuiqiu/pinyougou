@@ -71,15 +71,36 @@
 		<where>
 		<foreach collection="ids" open="id in(" close=")" separator="," item="id">
 			#{id}
-		</foreach>
+		</foreach>		
+		</where>
+	</delete>
+	
+	<!--条件查询  -->
+	<select id="search" parameterType="com.pinyougou.pojo.TbBrand" resultMap="brand_map">
+		select 
+		<include refid="brand_sql"></include>
+		from tb_brand
 		
+		<where>
+			<if test="name != null and name!= ''">
+				name like '%${name}%'
+			</if>
+			
+			<if test="firstChar !=null and firstChar !=''">
+			
+			first_char like '%${firstChar}%'
+			
+			</if>
 		
 		
 		</where>
 	
 	
 	
-	</delete>
+	</select>
+
+
+
 
 
 </mapper>

@@ -8,7 +8,10 @@
   <artifactId>pinyougou-dao</artifactId>
   
    <dependencies>
-
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>		
+	</dependency>
   	<dependency>
 	    <groupId>com.github.pagehelper</groupId>
 	    <artifactId>pagehelper</artifactId>	   
