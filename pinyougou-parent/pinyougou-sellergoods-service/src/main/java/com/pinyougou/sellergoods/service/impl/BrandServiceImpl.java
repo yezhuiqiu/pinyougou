@@ -13,6 +13,7 @@ import com.pinyougou.mapper.TbBrandMapper;
 import com.pinyougou.mapper.mymapper.BrandMapper;
 import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.sellergoods.serivce.BrandService;
+import com.pinyougou.vo.BrandVo;
 
 import entity.PageResult;
 
@@ -39,7 +40,6 @@ public class BrandServiceImpl implements BrandService {
 		PageResult result =new PageResult(list.getTotal(), list.getResult());
 		
 		
-		System.out.println(pageNum+"------"+pageSize+"-----"+list.getTotal());
 		
 		return result;
 	}
@@ -63,6 +63,21 @@ public class BrandServiceImpl implements BrandService {
 	@Override
 	public void delete(Long id) {
 		mapper.delete(id);
+	}
+
+	@Override
+	public void deleteList(BrandVo vo) {
+		
+		mapper.deleteList(vo);
+	}
+
+	@Override
+	public PageResult search(TbBrand brand ,int page ,int size) {
+		PageHelper.startPage(page, size);
+		Page<TbBrand> search = (Page<TbBrand>) mapper.search(brand);
+		PageResult result = new PageResult(search.getTotal(), search.getResult());
+		
+		return result;
 	}
 
 }

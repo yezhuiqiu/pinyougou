@@ -3,6 +3,7 @@ package com.pinyougou.sellergoods.serivce;
 import java.util.List;
 
 import com.pinyougou.pojo.TbBrand;
+import com.pinyougou.vo.BrandVo;
 
 import entity.PageResult;
 
@@ -26,5 +27,9 @@ public interface BrandService {
 	public void update(TbBrand brand);
 	
 	public void delete(Long id);
+	
+	public  void deleteList(BrandVo vo);
+	
+	public PageResult search(TbBrand brand,int page ,int size);
 
 }
