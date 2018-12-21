@@ -3,6 +3,7 @@ package com.pinyougou.mapper.mymapper;
 import java.util.List;
 
 import com.pinyougou.pojo.TbBrand;
+import com.pinyougou.vo.BrandVo;
 
 public interface BrandMapper {
 		
@@ -18,5 +19,7 @@ public interface BrandMapper {
 	
 	
 	void delete(Long id);
+	
+	void deleteList(BrandVo vo);
 	 
 }
