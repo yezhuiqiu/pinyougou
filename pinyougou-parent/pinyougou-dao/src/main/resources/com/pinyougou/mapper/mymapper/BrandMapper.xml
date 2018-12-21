@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pinyougou.mapper.mymapper.BrandMapper">
+
+		<resultMap type="com.pinyougou.pojo.TbBrand" id="brand_map">
+			<id property="id" column="id"/>
+			<result property="name" column="name"/>
+			<result property="firstChar" column="first_char"/>
+		</resultMap>
+		
+	
+	<sql id="brand_sql">
+			 `id`,
+		  `name`,
+		  `first_char` 
+	</sql>
+	
+	<select id="findAll" resultMap="brand_map">
+			SELECT 
+		 <include refid="brand_sql"></include>
+		FROM
+		 `tb_brand` 
+		
+	</select>
+	
+	<insert id="insert" parameterType="com.pinyougou.pojo.TbBrand" useGeneratedKeys="true" keyProperty="id" >
+		insert into tb_brand 
+		(<include refid="brand_sql"></include>)
+		values(#{id},#{name},#{firstChar})
+		
+	</insert>
+	
+	<update id="update" parameterType="com.pinyougou.pojo.TbBrand">
+		update tb_brand 
+		
+		<set>
+		<if test="name!=null and name!=''">
+		name = #{name},
+		</if>
+		<if test="firstChar">
+		first_char = #{firstChar}
+		</if>
+		
+		</set>
+		
+		where id=#{id};
+	
+	
+	</update>
+	
+	<select id="findOne" parameterType="long" resultMap="brand_map">
+	
+		select 
+		<include refid="brand_sql"></include>
+		from tb_brand 
+		where id = #{id}
+		
+	
+	</select>
+	
+	<delete id="delete" parameterType="long">
+		delete from tb_brand 
+		where id = #{id}
+	
+	
+	</delete>
+
+
+</mapper>
