@@ -21,6 +21,8 @@ import entity.Result;
 @RequestMapping("/brand")
 public class BrandController {
 	
+	private int age;
+	
 	@Reference
 	private BrandService brandService;
 	
