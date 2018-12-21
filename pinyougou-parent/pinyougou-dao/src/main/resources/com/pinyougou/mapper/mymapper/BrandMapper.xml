@@ -64,6 +64,22 @@
 	
 	
 	</delete>
+	
+	<!--批量删除  -->
+	<delete id="deleteList" parameterType="com.pinyougou.vo.BrandVo">
+		delete from tb_brand
+		<where>
+		<foreach collection="ids" open="id in(" close=")" separator="," item="id">
+			#{id}
+		</foreach>
+		
+		
+		
+		</where>
+	
+	
+	
+	</delete>
 
 
 </mapper>
