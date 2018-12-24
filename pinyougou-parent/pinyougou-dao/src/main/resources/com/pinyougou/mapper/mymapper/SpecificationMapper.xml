@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pinyougou.mapper.mymapper.SpecificationMapper">
+		
+		
+		<resultMap type="com.pinyougou.pojo.TbSpecification" id="result_map">
+			<id property="id" column="id"/>
+			<result property="specName" column="spec_name"/>
+		
+		</resultMap>
+		
+		<sql id="sql_id">
+		  id,
+ 		 spec_name
+		</sql>
+		
+		
+		<insert id="insert" parameterType="com.pinyougou.pojo.TbSpecification">
+		<!--主键返回  -->
+			<selectKey resultType="long" order="AFTER" keyProperty="id">
+			select last_insert_id() as id
+			</selectKey>
+			insert into tb_specification (spec_name) values (#{specName})
+		</insert>
+		
+
+	<select id="selectBySearch" parameterType="com.pinyougou.pojo.TbSpecification" resultMap="result_map">
+		select 
+		<include refid="sql_id"></include>
+		from
+		tb_specification
+		<where>
+			<if test="specName !=null and specName !=''">
+				spec_name like '%${specName}%'
+			</if>
+		
+		</where>
+	</select>
+	
+	<select id="findOne" parameterType="long" resultMap="result_map">
+	select 
+	<include refid="sql_id"/>
+	 from tb_specification
+	where id= #{id}
+	</select>
+	
+	<update id="update" parameterType="com.pinyougou.pojo.TbSpecification" >
+		update tb_specification
+		<set>
+			<if test="specName !=null and specName!=''">
+				spec_name = #{specName}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="long">
+		delete from tb_specification where id = #{id}
+	</delete>
+
+
+</mapper>

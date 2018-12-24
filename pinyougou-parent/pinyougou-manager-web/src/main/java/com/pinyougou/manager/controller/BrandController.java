@@ -15,6 +15,7 @@ import com.pinyougou.sellergoods.serivce.BrandService;
 import com.pinyougou.vo.BrandVo;
 
 import entity.PageResult;
+import entity.ResponseResult;
 import entity.Result;
 
 @RestController
@@ -105,11 +106,11 @@ public class BrandController {
 	}
 	
 	@RequestMapping(value="/search",method=RequestMethod.POST)
-	public PageResult search(int page,int size,@RequestBody TbBrand brand) {
+	public ResponseResult search(int page,int size,@RequestBody TbBrand brand) {
 		
+		PageResult search = brandService.search(brand, page, size);
 			
-			
-			return brandService.search(brand, page, size);
+			return new ResponseResult().build(1, null, search.getRows()).setTotal(search.getTotal());
 			
 	
 	}

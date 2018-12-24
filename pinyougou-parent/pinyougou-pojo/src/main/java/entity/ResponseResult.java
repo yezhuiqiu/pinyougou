@@ -18,35 +18,72 @@ public class ResponseResult {
     private Integer status;
 
     // 响应消息
-    private String msg;
+    private String message;
 
     // 响应中的数据
     private Object data;
     
     private Long total;//总条数
     
-    private  Long totalPages;//总页数
+    //列表
+	private List rows;
+	
+	private boolean success;
     
+
+
+	private  Long totalPages;//总页数
     
+	
+	
+	
+    public boolean isSuccess() {
+		return success;
+	}
+
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+
+	public List getRows() {
+		return rows;
+	}
+
+	public ResponseResult setRows(List rows) {
+		this.rows = rows;
+		return this;
+	}
 
     public Long getTotal() {
 		return total;
 	}
 
-	public void setTotal(Long total) {
+	public ResponseResult setTotal(Long total) {
 		this.total = total;
+		
+		return this;
 	}
 
 	public Long getTotalPages() {
 		return totalPages;
 	}
 
-	public void setTotalPages(Long totalPages) {
+	public ResponseResult setTotalPages(Long totalPages) {
 		this.totalPages = totalPages;
+		
+		return this;
 	}
 
-	public static ResponseResult build(Integer status, String msg, Object data) {
-        return new ResponseResult(status, msg, data);
+	public static ResponseResult build(Integer status, String message, Object data) {
+        return new ResponseResult(status, message, data);
+    }
+	
+	public static ResponseResult build(boolean success, String message) {
+        return new ResponseResult(success, message);
+    }
+	
+	public static ResponseResult build(Integer status, String message, List list) {
+        return new ResponseResult(status, message, list);
     }
 
     public static ResponseResult ok(Object data) {
@@ -61,21 +98,32 @@ public class ResponseResult {
 
     }
 
-    public static ResponseResult build(Integer status, String msg) {
-        return new ResponseResult(status, msg, null);
+    public static ResponseResult build(Integer status, String message) {
+        return new ResponseResult(status, message, null);
     }
 
-    public ResponseResult(Integer status, String msg, Object data) {
+    public ResponseResult(Integer status, String message, Object data) {
         this.status = status;
-        this.msg = msg;
+        this.message = message;
         this.data = data;
+    }
+    
+    public ResponseResult(Integer status, String message, List list) {
+        this.status = status;
+        this.message = message;
+        this.rows = list;
     }
 
     public ResponseResult(Object data) {
         this.status = 200;
-        this.msg = "OK";
+        this.message = "OK";
         this.data = data;
     }
+
+    public ResponseResult(boolean success, String message) {
+    	this.success = success;
+    	this.message = message;
+	}
 
 //    public Boolean isOK() {
 //        return this.status == 200;
@@ -89,12 +137,12 @@ public class ResponseResult {
         this.status = status;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getmessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setmessage(String message) {
+        this.message = message;
     }
 
     public Object getData() {
@@ -127,7 +175,7 @@ public class ResponseResult {
                     obj = MAPPER.readValue(data.asText(), clazz);
                 }
             }
-            return build(jsonNode.get("status").intValue(), jsonNode.get("msg").asText(), obj);
+            return build(jsonNode.get("status").intValue(), jsonNode.get("message").asText(), obj);
         } catch (Exception e) {
             return null;
         }
@@ -164,7 +212,7 @@ public class ResponseResult {
                 obj = MAPPER.readValue(data.traverse(),
                         MAPPER.getTypeFactory().constructCollectionType(List.class, clazz));
             }
-            return build(jsonNode.get("status").intValue(), jsonNode.get("msg").asText(), obj);
+            return build(jsonNode.get("status").intValue(), jsonNode.get("message").asText(), obj);
         } catch (Exception e) {
             return null;
         }

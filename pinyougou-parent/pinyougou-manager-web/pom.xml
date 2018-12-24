@@ -10,6 +10,23 @@
   
    <dependencies>
     <!-- Spring -->
+    
+    <dependency>
+		<groupId>org.mybatis</groupId> 
+		<artifactId>mybatis</artifactId> 
+		</dependency>
+		<dependency> 
+		<groupId>org.mybatis</groupId> 
+		<artifactId>mybatis-spring</artifactId>
+		</dependency>
+  			<dependency>
+		<groupId>com.github.miemiedev</groupId>
+		<artifactId>mybatis-paginator</artifactId>		
+	</dependency>	
+		<dependency>
+	    <groupId>com.github.pagehelper</groupId>
+	    <artifactId>pagehelper</artifactId>	   
+	</dependency>	
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-context</artifactId>

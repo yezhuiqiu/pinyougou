@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pinyougou.mapper.mymapper.SpecificationOptionMapper">
+		<resultMap type="com.pinyougou.pojo.TbSpecificationOption" id="result_map">
+			<id property="id" column="id"/>
+			<result property="optionName" column="option_name"/>
+			<result property="specId" column="spec_id"/>
+			<result property="orders" column="orders"/>
+		
+		</resultMap>
+		
+		<sql id="sql_item">
+			option_name,spec_id,orders
+		
+		</sql>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.pinyougou.pojo.TbSpecificationOption">
+		insert into  tb_specification_option (option_name,spec_id,orders) values 
+		(#{optionName},#{specId},#{orders})
+	</insert>
+	
+		<select id="findOne" parameterType="long" resultMap="result_map">
+			select 
+			<include refid="sql_item"/>
+			from tb_specification_option
+			where id = #{id}
+		</select>
+		
+		<select id="findBySpecId" parameterType="long" resultMap="result_map">
+			select 
+			<include refid="sql_item"/>
+			from tb_specification_option
+			where spec_id = #{id}
+		
+		</select>
+		
+		<!--根据spec_id删除  -->
+		<delete id="deleteBySpecId" parameterType="long">
+			delete from tb_specification_option
+			where spec_id = #{id}
+		
+		</delete>
+
+</mapper>
