@@ -42,6 +42,20 @@
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-test</artifactId>
 	</dependency>
+	
+	
+	
+	<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+	
+	
+	
 	<!-- dubbo相关 -->
 	<dependency>
 		<groupId>com.alibaba</groupId>
@@ -76,9 +90,14 @@
 		<artifactId>servlet-api</artifactId>		
 		<scope>provided</scope>
 	</dependency>
-  
 
-  </dependencies>
+
+	<dependency>
+		<groupId>com.pinyougou</groupId>
+		<artifactId>pinyougou-sellergoods-interface</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+   </dependencies>
   
   
     <build>  

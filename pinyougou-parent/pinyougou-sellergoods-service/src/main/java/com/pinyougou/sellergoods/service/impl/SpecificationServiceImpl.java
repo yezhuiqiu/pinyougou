@@ -1,6 +1,7 @@
 package com.pinyougou.sellergoods.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -79,6 +80,12 @@ public class SpecificationServiceImpl implements SpecificationService {
 		
 		optionMapper.deleteBySpecId(id);
 		
+	}
+
+	@Override
+	public List<Map> selectOptionList() {
+		// TODO Auto-generated method stub
+		return mapper.selectOptionList();
 	}
 	
 	

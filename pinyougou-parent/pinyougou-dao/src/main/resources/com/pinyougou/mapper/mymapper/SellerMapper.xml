@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pinyougou.mapper.mymapper.SellerMapper">
+
+	<sql id="sql_item">
+		 `seller_id`,
+		  `name`,
+		  `nick_name`,
+		  `password`,
+		  `email`,
+		  `mobile`,
+		  `telephone`,
+		  `status`,
+		  `address_detail`,
+		  `linkman_name`,
+		  `linkman_qq`,
+		  `linkman_mobile`,
+		  `linkman_email`,
+		  `license_number`,
+		  `tax_number`,
+		  `org_number`,
+		  `address`,
+		  `logo_pic`,
+		  `brief`,
+		  `create_time`,
+		  `legal_person`,
+		  `legal_person_card_id`,
+		  `bank_user`,
+		  `bank_name`
+	</sql>
+
+	<insert id="insert" parameterType="com.pinyougou.pojo.TbSeller">
+		insert into tb_seller (
+			<include refid="sql_item"/>
+		) 
+
+	 values (#{sellerId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{addressDetail,jdbcType=VARCHAR}, 
+      #{linkmanName,jdbcType=VARCHAR}, #{linkmanQq,jdbcType=VARCHAR}, #{linkmanMobile,jdbcType=VARCHAR}, 
+      #{linkmanEmail,jdbcType=VARCHAR}, #{licenseNumber,jdbcType=VARCHAR}, #{taxNumber,jdbcType=VARCHAR}, 
+      #{orgNumber,jdbcType=VARCHAR}, #{address,jdbcType=BIGINT}, #{logoPic,jdbcType=VARCHAR}, 
+      #{brief,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{legalPerson,jdbcType=VARCHAR}, 
+      #{legalPersonCardId,jdbcType=VARCHAR}, #{bankUser,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}
+      )
+	
+	
+	</insert>
+
+
+</mapper>

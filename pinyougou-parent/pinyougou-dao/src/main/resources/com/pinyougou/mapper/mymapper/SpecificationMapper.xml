@@ -57,6 +57,9 @@
 	<delete id="deleteById" parameterType="long">
 		delete from tb_specification where id = #{id}
 	</delete>
-
+		
+	<select id="selectOptionList" resultType="java.util.Map">
+		select id,spec_name as text from tb_specification 
+	</select>	
 
 </mapper>

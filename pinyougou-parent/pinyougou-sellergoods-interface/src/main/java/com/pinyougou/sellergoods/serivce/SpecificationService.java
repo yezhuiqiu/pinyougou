@@ -2,6 +2,9 @@ package com.pinyougou.sellergoods.serivce;
 
 
 
+import java.util.List;
+import java.util.Map;
+
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.pojo.TbSpecification;
 import com.pinyougou.pojo.group.Specification;
@@ -18,5 +21,7 @@ public interface SpecificationService {
 	void update(Specification specification);
 	
 	void delete(Long id);
+	
+	List<Map>selectOptionList();
 
 }

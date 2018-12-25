@@ -1,12 +1,10 @@
 package com.pinyougou.manager.controller;
-
-import javax.annotation.Resource;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.pojo.TbSpecification;
@@ -14,11 +12,15 @@ import com.pinyougou.pojo.group.Specification;
 import com.pinyougou.sellergoods.serivce.SpecificationService;
 
 import entity.ResponseResult;
-
+import entity.Result;
+/**
+ * controller
+ * @author Administrator
+ *
+ */
 @RestController
 @RequestMapping("/specification")
 public class SpecificationController {
-	
 	@Reference
 	private SpecificationService service;
 	
@@ -84,5 +86,4 @@ public class SpecificationController {
 			}
 		
 	}
-
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pinyougou.mapper.mymapper.TypeTemplateMapper">
+	<resultMap type="com.pinyougou.pojo.TbTypeTemplate" id="result_map">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="specIds" column="spec_ids"/>
+		<result property="brandIds" column="brand_ids"/>
+		<result property="customAttributeItems" column="custom_attribute_items"/>
+	</resultMap>
+	
+		<sql id="sql_item">
+			id,name,spec_ids,brand_ids,custom_attribute_items
+		</sql>
+	
+	
+	<select id="selectById" parameterType="long" resultMap="result_map" >
+		select 
+		<include refid="sql_item"/>
+		from
+		tb_type_template
+		where id = #{id}
+	</select>
+	
+	<select id="search" parameterType="com.pinyougou.pojo.TbTypeTemplate" resultMap="result_map">
+		select 
+		<include refid="sql_item"/>
+		from 
+		tb_type_template
+		<where>
+			<if test="name!=null and name!=''">
+				name like '%${name}%'
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.pinyougou.pojo.TbTypeTemplate" keyProperty="id" useGeneratedKeys="true">
+		insert into tb_type_template 
+		(name,spec_ids,brand_ids,custom_attribute_items)
+		values
+		(#{name},#{specIds},#{brandIds},#{customAttributeItems})
+	
+	</insert>
+	
+	<delete id="delete" parameterType="long">
+		delete from tb_type_template where id #{id}
+	</delete>
+
+</mapper>
