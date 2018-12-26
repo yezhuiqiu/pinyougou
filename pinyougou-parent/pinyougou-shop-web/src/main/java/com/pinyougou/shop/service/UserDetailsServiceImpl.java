@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.config.annotation.Reference;
@@ -40,8 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		//商家对象
 		TbSeller seller = service.findOne(username);
 		
-		System.out.println("222222222---"+username);
-		
+
 		if(seller!=null) {
 			
 			if(seller.getStatus().equals("1")) {
